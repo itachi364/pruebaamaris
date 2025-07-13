@@ -1,0 +1,27 @@
+server:
+  port: 10000
+
+aws:
+  dynamodb:
+    region: ${AWS_REGION}
+    access-key: ${AWS_ACCESS_KEY_ID}     
+    secret-key: ${AWS_SECRET_ACCESS_KEY}  
+    endpoint: https://dynamodb.${AWS_REGION}.amazonaws.com
+
+
+spring:
+  application:
+    name: fondo-service
+
+  main:
+    allow-bean-definition-overriding: true
+
+  devtools:
+    restart:
+      enabled: false
+
+logging:
+  level:
+    root: INFO
+    software.amazon.awssdk: WARN
+    org.springframework.web: INFO
