@@ -3,9 +3,9 @@ package com.msvanegasg.pruebaamaris.service;
 import com.msvanegasg.pruebaamaris.dto.FundRequestDTO;
 import com.msvanegasg.pruebaamaris.dto.FundResponseDTO;
 import com.msvanegasg.pruebaamaris.mapper.FundMapper;
+import com.msvanegasg.pruebaamaris.models.Fund;
 import com.msvanegasg.pruebaamaris.repository.FundRepository;
 import org.springframework.stereotype.Service;
-import com.msvanegasg.pruebaamaris.models.Fund;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,8 +20,8 @@ public class FundService {
     }
 
     public FundResponseDTO create(FundRequestDTO dto) {
-        var entity = FundMapper.toEntity(dto);
-        return FundMapper.toResponse(repository.save(entity));
+        Fund fund = FundMapper.toEntity(dto);
+        return FundMapper.toResponse(repository.save(fund));
     }
 
     public List<FundResponseDTO> getAll() {
@@ -39,7 +39,7 @@ public class FundService {
     public void delete(String id) {
         repository.deleteById(id);
     }
-    
+
     public FundResponseDTO update(String id, FundRequestDTO dto) {
         Fund existing = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Fund not found"));
@@ -49,6 +49,4 @@ public class FundService {
 
         return FundMapper.toResponse(repository.save(existing));
     }
-
-
 }

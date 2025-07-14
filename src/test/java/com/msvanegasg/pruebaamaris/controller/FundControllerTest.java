@@ -118,5 +118,7 @@ public class FundControllerTest {
 				.content(objectMapper.writeValueAsString(request))).andExpect(status().isNotFound())
 				.andExpect(jsonPath("$.error").value("Fund not found"));
 	}
+	
+	
 
 }

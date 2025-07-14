@@ -27,5 +27,11 @@ public class GlobalExceptionHandler {
         }
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("error", ex.getMessage()));
     }
+    
+    @ExceptionHandler(com.msvanegasg.pruebaamaris.exception.BadRequestException.class)
+    public ResponseEntity<?> handleBadRequest(com.msvanegasg.pruebaamaris.exception.BadRequestException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", ex.getMessage()));
+    }
+
 
 }

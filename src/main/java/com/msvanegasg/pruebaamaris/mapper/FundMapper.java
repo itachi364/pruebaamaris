@@ -1,8 +1,8 @@
 package com.msvanegasg.pruebaamaris.mapper;
 
-import com.msvanegasg.pruebaamaris.models.Fund;
 import com.msvanegasg.pruebaamaris.dto.FundRequestDTO;
 import com.msvanegasg.pruebaamaris.dto.FundResponseDTO;
+import com.msvanegasg.pruebaamaris.models.Fund;
 
 import java.util.UUID;
 
@@ -16,11 +16,12 @@ public class FundMapper {
                 .build();
     }
 
-    public static FundResponseDTO toResponse(Fund fund) {
-        FundResponseDTO dto = new FundResponseDTO();
-        dto.setId(fund.getFundId());
-        dto.setName(fund.getName());
-        dto.setMinimumAmount(fund.getMinimumAmount());
-        return dto;
+    public static FundResponseDTO toResponse(Fund entity) {
+        return FundResponseDTO.builder()
+                .id(entity.getFundId())
+                .name(entity.getName())
+                .minimumAmount(entity.getMinimumAmount())
+                .build();
     }
 }
+
