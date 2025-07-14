@@ -1,7 +1,8 @@
 package com.msvanegasg.pruebaamaris.dto;
 
-import lombok.*;
+import com.msvanegasg.pruebaamaris.enums.FundCategory;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.*;
 
 @Data
 @NoArgsConstructor
@@ -9,12 +10,15 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Builder
 public class FundResponseDTO {
 
-    @Schema(description = "ID del fondo", example = "f1234-abcd")
+    @Schema(description = "Identificador único del fondo", example = "abc123")
     private String id;
 
-    @Schema(description = "Nombre del fondo", example = "Fondo Conservador")
+    @Schema(description = "Nombre del fondo", example = "FDO-ACCIONES")
     private String name;
 
-    @Schema(description = "Monto mínimo para vincularse al fondo", example = "100000")
+    @Schema(description = "Monto mínimo requerido para invertir en el fondo", example = "250000")
     private int minimumAmount;
+
+    @Schema(description = "Categoría del fondo (FPV o FIC)", example = "FIC")
+    private FundCategory category;
 }

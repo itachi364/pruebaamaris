@@ -39,7 +39,7 @@ public class UserBalanceController {
 
     @GetMapping("/historial/{userId}")
     @Operation(summary = "Historial de transacciones", description = "Obtiene el historial de movimientos (aperturas y cancelaciones) para un usuario.")
-    public ResponseEntity<List<UserBalanceResponseDTO>> historial(@PathVariable String userId) {
+    public ResponseEntity<List<UserBalanceResponseDTO>> historial(@PathVariable("userId") String userId) {
         return ResponseEntity.ok(service.obtenerHistorial(userId));
     }
 }

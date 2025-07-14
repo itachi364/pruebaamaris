@@ -13,15 +13,16 @@ public class FundMapper {
                 .fundId(UUID.randomUUID().toString())
                 .name(dto.getName())
                 .minimumAmount(dto.getMinimumAmount())
+                .category(dto.getCategory())
                 .build();
     }
 
-    public static FundResponseDTO toResponse(Fund entity) {
+    public static FundResponseDTO toResponse(Fund fund) {
         return FundResponseDTO.builder()
-                .id(entity.getFundId())
-                .name(entity.getName())
-                .minimumAmount(entity.getMinimumAmount())
+                .id(fund.getFundId())
+                .name(fund.getName())
+                .minimumAmount(fund.getMinimumAmount())
+                .category(fund.getCategory())
                 .build();
     }
 }
-

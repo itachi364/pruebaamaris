@@ -11,7 +11,7 @@ public class UserBalanceMapper {
 
     public static UserBalance toModel(UserBalanceRequestDTO dto, int balanceAfter) {
         return UserBalance.builder()
-                .id(UUID.randomUUID().toString())
+                .balanceId(UUID.randomUUID().toString())
                 .fundId(dto.getFundId())
                 .userId(dto.getUserId())
                 .amount(dto.getAmount())
@@ -24,7 +24,7 @@ public class UserBalanceMapper {
 
     public static UserBalanceResponseDTO toResponse(UserBalance model) {
         return UserBalanceResponseDTO.builder()
-                .id(model.getId())
+                .id(model.getBalanceId())
                 .fundId(model.getFundId())
                 .userId(model.getUserId())
                 .amount(model.getAmount())

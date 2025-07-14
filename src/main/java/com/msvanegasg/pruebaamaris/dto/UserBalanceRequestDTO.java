@@ -2,6 +2,8 @@ package com.msvanegasg.pruebaamaris.dto;
 
 import com.msvanegasg.pruebaamaris.enums.NotificationType;
 import com.msvanegasg.pruebaamaris.enums.TransactionType;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
 
 import lombok.*;
@@ -10,6 +12,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Schema(description = "DTO para registrar un Balance del usuario en un fondo.")
 public class UserBalanceRequestDTO {
 
     @NotBlank(message = "El ID del fondo no puede estar vacío")

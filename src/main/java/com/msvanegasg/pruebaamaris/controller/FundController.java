@@ -35,19 +35,19 @@ public class FundController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Obtener fondo por ID")
-    public ResponseEntity<FundResponseDTO> getById(@PathVariable String id) {
+    public ResponseEntity<FundResponseDTO> getById(@PathVariable("id") String id) {
         return ResponseEntity.ok(service.getById(id));
     }
 
     @PutMapping("/{id}")
     @Operation(summary = "Actualizar fondo por ID")
-    public ResponseEntity<FundResponseDTO> update(@PathVariable String id, @Valid @RequestBody FundRequestDTO dto) {
+    public ResponseEntity<FundResponseDTO> update(@PathVariable("id") String id, @Valid @RequestBody FundRequestDTO dto) {
         return ResponseEntity.ok(service.update(id, dto));
     }
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Eliminar fondo por ID")
-    public ResponseEntity<Void> delete(@PathVariable String id) {
+    public ResponseEntity<Void> delete(@PathVariable("id") String id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }

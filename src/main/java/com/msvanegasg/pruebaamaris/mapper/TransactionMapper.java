@@ -10,7 +10,7 @@ public class TransactionMapper {
 
     public static Transaction toModel(TransactionRequestDTO dto, int balanceAfter) {
         return Transaction.builder()
-                .id(UUID.randomUUID().toString())
+                .transactionId(UUID.randomUUID().toString())
                 .userId(dto.getUserId())
                 .fundId(dto.getFundId())
                 .amount(dto.getAmount())
@@ -23,7 +23,7 @@ public class TransactionMapper {
 
     public static TransactionResponseDTO toResponse(Transaction model) {
         return TransactionResponseDTO.builder()
-                .id(model.getId())
+                .id(model.getTransactionId())
                 .userId(model.getUserId())
                 .fundId(model.getFundId())
                 .amount(model.getAmount())

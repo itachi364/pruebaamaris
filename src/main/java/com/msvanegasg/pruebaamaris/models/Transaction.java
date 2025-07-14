@@ -12,7 +12,7 @@ import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.*;
 @Builder
 public class Transaction {
 
-    private String id;
+    private String transactionId;
     private String userId;
     private String fundId;
     private int amount;
@@ -22,8 +22,8 @@ public class Transaction {
     private long timestamp;
 
     @DynamoDbPartitionKey
-    public String getId() {
-        return id;
+    public String getTransactionId() {
+        return transactionId;
     }
 
     @DynamoDbSecondaryPartitionKey(indexNames = "userId-index")

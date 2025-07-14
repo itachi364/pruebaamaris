@@ -12,22 +12,23 @@ import com.msvanegasg.pruebaamaris.enums.TransactionType;
 @Builder
 public class UserBalance {
 
-    private String id;                  
-    private String fundId;             
-    private String userId;             
-    private int amount;                
-    private int balanceAfter;          
-    private TransactionType type;      
-    private NotificationType notificationType; 
-    private long timestamp;            
-    @DynamoDbPartitionKey
-    public String getId() {
-        return id;
-    }
+	private String balanceId;
+	private String fundId;
+	private String userId;
+	private int amount;
+	private int balanceAfter;
+	private TransactionType type;
+	private NotificationType notificationType;
+	private long timestamp;
 
-    @DynamoDbSecondaryPartitionKey(indexNames = "userId-index")
-    public String getUserId() {
-        return userId;
-    }
+	@DynamoDbPartitionKey
+	public String getBalanceId() {
+		return balanceId;
+	}
+
+	@DynamoDbSecondaryPartitionKey(indexNames = "userId-index")
+	public String getUserId() {
+		return userId;
+	}
 
 }

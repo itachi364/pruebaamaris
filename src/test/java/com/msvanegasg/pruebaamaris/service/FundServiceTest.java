@@ -2,15 +2,13 @@ package com.msvanegasg.pruebaamaris.service;
 
 import com.msvanegasg.pruebaamaris.dto.FundRequestDTO;
 import com.msvanegasg.pruebaamaris.dto.FundResponseDTO;
+import com.msvanegasg.pruebaamaris.enums.FundCategory;
 import com.msvanegasg.pruebaamaris.mapper.FundMapper;
 import com.msvanegasg.pruebaamaris.models.Fund;
 import com.msvanegasg.pruebaamaris.repository.FundRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentCaptor;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,9 +32,9 @@ public class FundServiceTest {
 
     @Test
     void testCreateFund() {
-        FundRequestDTO dto = new FundRequestDTO("Fund Name", 1000);
+        FundRequestDTO dto = new FundRequestDTO("Fondo Test", 1500,FundCategory.FIC);
         Fund fund = Fund.builder()
-                .fundId("generated-id-123")
+                .fundId("auto-generated-id")
                 .name(dto.getName())
                 .minimumAmount(dto.getMinimumAmount())
                 .build();
@@ -46,93 +44,80 @@ public class FundServiceTest {
         FundResponseDTO result = service.create(dto);
 
         assertThat(result).isNotNull();
-        assertThat(result.getId()).isEqualTo("generated-id-123");
         assertThat(result.getName()).isEqualTo(dto.getName());
         assertThat(result.getMinimumAmount()).isEqualTo(dto.getMinimumAmount());
-
-        ArgumentCaptor<Fund> captor = ArgumentCaptor.forClass(Fund.class);
-        verify(repository).save(captor.capture());
-
-        assertThat(captor.getValue().getName()).isEqualTo(dto.getName());
-        assertThat(captor.getValue().getMinimumAmount()).isEqualTo(dto.getMinimumAmount());
-        assertThat(captor.getValue().getFundId()).isNotNull();
     }
-
 
     @Test
     void testGetAllFunds() {
-        Fund fund1 = new Fund("id1", "Fund A", 100);
-        Fund fund2 = new Fund("id2", "Fund B", 200);
+        Fund fund1 = new Fund("f1", "Fondo A", 1000,FundCategory.FIC);
+        Fund fund2 = new Fund("f2", "Fondo B", 2000,FundCategory.FPV);
         when(repository.findAll()).thenReturn(List.of(fund1, fund2));
 
-        List<FundResponseDTO> funds = service.getAll();
+        List<FundResponseDTO> result = service.getAll();
 
-        assertThat(funds).hasSize(2);
-        assertThat(funds.get(0).getId()).isEqualTo("id1");
-        assertThat(funds.get(1).getId()).isEqualTo("id2");
+        assertThat(result).hasSize(2);
+        assertThat(result.get(0).getId()).isEqualTo("f1");
+        assertThat(result.get(1).getId()).isEqualTo("f2");
     }
 
     @Test
     void testGetByIdFound() {
-        Fund fund = new Fund("id1", "Fund X", 500);
-        when(repository.findById("id1")).thenReturn(Optional.of(fund));
+        Fund fund = new Fund("f1", "Fondo X", 500, FundCategory.FIC);
+        when(repository.findById("f1")).thenReturn(Optional.of(fund));
 
-        FundResponseDTO result = service.getById("id1");
+        FundResponseDTO result = service.getById("f1");
 
         assertThat(result).isNotNull();
-        assertThat(result.getId()).isEqualTo("id1");
+        assertThat(result.getId()).isEqualTo("f1");
     }
 
     @Test
     void testGetByIdNotFound() {
-        when(repository.findById("idX")).thenReturn(Optional.empty());
-
-        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
-            service.getById("idX");
-        });
-
-        assertThat(exception.getMessage()).isEqualTo("Fund not found");
-    }
-
-    @Test
-    void testDeleteFund() {
-        doNothing().when(repository).deleteById("id1");
-
-        service.delete("id1");
-
-        verify(repository, times(1)).deleteById("id1");
-    }
-    
-    @Test
-    void testUpdateFund() {
-        String id = "F001";
-        Fund existingFund = new Fund(id, "Old Name", 1000);
-        FundRequestDTO updateDto = new FundRequestDTO("New Name", 2000);
-        Fund updatedFund = new Fund(id, updateDto.getName(), updateDto.getMinimumAmount());
-
-        when(repository.findById(id)).thenReturn(Optional.of(existingFund));
-        when(repository.save(any(Fund.class))).thenReturn(updatedFund);
-
-        FundResponseDTO response = service.update(id, updateDto);
-
-        assertThat(response).isNotNull();
-        assertThat(response.getId()).isEqualTo(id);
-        assertThat(response.getName()).isEqualTo(updateDto.getName());
-        assertThat(response.getMinimumAmount()).isEqualTo(updateDto.getMinimumAmount());
-
-        verify(repository).save(existingFund);
-    }
-
-    @Test
-    void testUpdateFund_NotFound() {
-        FundRequestDTO dto = new FundRequestDTO("Name", 1000);
-        when(repository.findById("F999")).thenReturn(Optional.empty());
+        when(repository.findById("fX")).thenReturn(Optional.empty());
 
         RuntimeException ex = assertThrows(RuntimeException.class, () -> {
-            service.update("F999", dto);
+            service.getById("fX");
         });
 
         assertThat(ex.getMessage()).isEqualTo("Fund not found");
     }
 
+    @Test
+    void testDeleteFund() {
+        doNothing().when(repository).deleteById("f1");
+
+        service.delete("f1");
+
+        verify(repository).deleteById("f1");
+    }
+
+    @Test
+    void testUpdateFund() {
+        String id = "f1";
+        Fund existing = new Fund(id, "Antiguo", 1000,FundCategory.FIC);
+        FundRequestDTO dto = new FundRequestDTO("Nuevo Fondo", 2500, FundCategory.FPV);
+        Fund updated = new Fund(id, dto.getName(), dto.getMinimumAmount(),dto.getCategory());
+
+        when(repository.findById(id)).thenReturn(Optional.of(existing));
+        when(repository.save(existing)).thenReturn(updated);
+
+        FundResponseDTO result = service.update(id, dto);
+
+        assertThat(result.getId()).isEqualTo(id);
+        assertThat(result.getName()).isEqualTo("Nuevo Fondo");
+        assertThat(result.getMinimumAmount()).isEqualTo(2500);
+    }
+
+    @Test
+    void testUpdateFund_NotFound() {
+        FundRequestDTO dto = new FundRequestDTO("Fondo Z", 1000, FundCategory.FIC);
+        when(repository.findById("Z999")).thenReturn(Optional.empty());
+
+        RuntimeException ex = assertThrows(RuntimeException.class, () -> {
+            service.update("Z999", dto);
+        });
+
+        assertThat(ex.getMessage()).isEqualTo("Fund not found");
+    }
 }

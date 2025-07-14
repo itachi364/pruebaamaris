@@ -23,5 +23,5 @@ spring:
 logging:
   level:
     root: INFO
-    software.amazon.awssdk: WARN
+    software.amazon.awssdk: DEBUG
     org.springframework.web: INFO

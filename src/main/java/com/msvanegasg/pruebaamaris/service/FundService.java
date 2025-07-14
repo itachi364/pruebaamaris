@@ -46,7 +46,9 @@ public class FundService {
 
         existing.setName(dto.getName());
         existing.setMinimumAmount(dto.getMinimumAmount());
+        existing.setCategory(dto.getCategory());
 
         return FundMapper.toResponse(repository.save(existing));
     }
+
 }
