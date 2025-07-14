@@ -147,7 +147,7 @@
               "Properties": {
                 "Code": {
                   "S3Bucket": "serverless-framework-deployments-us-east-1-ce2f9573-aed3",
-                  "S3Key": "serverless/pruebaamaris/dev/1752520787266-2025-07-14T19:19:47.266Z/pruebaamaris-lambda.jar"
+                  "S3Key": "serverless/pruebaamaris/dev/1752522025408-2025-07-14T19:40:25.408Z/pruebaamaris-lambda.jar"
                 },
                 "Handler": "com.msvanegasg.pruebaamaris.StreamLambdaHandler",
                 "Runtime": "java17",
@@ -171,14 +171,14 @@
                 "ApiLogGroup"
               ]
             },
-            "ApiLambdaVersionM0sFRuTP62hQq9j8p0ju5Mw9eHjIrm2y4TKvjnzZvI": {
+            "ApiLambdaVersionQHeWeeHLslYCVIezlRmmKiaNqqhqikYNi1mWhJtmYY": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "ApiLambdaFunction"
                 },
-                "CodeSha256": "CWaSFfHWvNLhbVg/CFoS3R+VQjw0AmEoqesZSSXyef0="
+                "CodeSha256": "9kYzjSOf/4QTU8OE9BU3OXJinothA49a+7B8OyTFGzI="
               }
             },
             "ApiGatewayRestApi": {
@@ -254,7 +254,7 @@
                 "ApiLambdaPermissionApiGateway"
               ]
             },
-            "ApiGatewayDeployment1752520781216": {
+            "ApiGatewayDeployment1752522018974": {
               "Type": "AWS::ApiGateway::Deployment",
               "Properties": {
                 "RestApiId": {
@@ -414,7 +414,7 @@
             "ApiLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "ApiLambdaVersionM0sFRuTP62hQq9j8p0ju5Mw9eHjIrm2y4TKvjnzZvI"
+                "Ref": "ApiLambdaVersionQHeWeeHLslYCVIezlRmmKiaNqqhqikYNi1mWhJtmYY"
               },
               "Export": {
                 "Name": "sls-pruebaamaris-dev-ApiLambdaFunctionQualifiedArn"
@@ -495,7 +495,7 @@
         "artifact": "target/pruebaamaris-lambda.jar",
         "artifactsS3KeyDirname": "serverless/pruebaamaris/dev/code-artifacts",
         "deploymentBucket": "serverless-framework-deployments-us-east-1-ce2f9573-aed3",
-        "artifactDirectoryName": "serverless/pruebaamaris/dev/1752520787266-2025-07-14T19:19:47.266Z"
+        "artifactDirectoryName": "serverless/pruebaamaris/dev/1752522025408-2025-07-14T19:40:25.408Z"
       },
       "functions": {
         "api": {
@@ -515,7 +515,7 @@
           "timeout": 30,
           "runtime": "java17",
           "vpc": {},
-          "versionLogicalId": "ApiLambdaVersionM0sFRuTP62hQq9j8p0ju5Mw9eHjIrm2y4TKvjnzZvI"
+          "versionLogicalId": "ApiLambdaVersionQHeWeeHLslYCVIezlRmmKiaNqqhqikYNi1mWhJtmYY"
         }
       },
       "params": {
@@ -815,7 +815,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-us-east-1-ce2f9573-aed3",
-                "S3Key": "serverless/pruebaamaris/dev/1752520787266-2025-07-14T19:19:47.266Z/pruebaamaris-lambda.jar"
+                "S3Key": "serverless/pruebaamaris/dev/1752522025408-2025-07-14T19:40:25.408Z/pruebaamaris-lambda.jar"
               },
               "Handler": "com.msvanegasg.pruebaamaris.StreamLambdaHandler",
               "Runtime": "java17",
@@ -839,14 +839,14 @@
               "ApiLogGroup"
             ]
           },
-          "ApiLambdaVersionM0sFRuTP62hQq9j8p0ju5Mw9eHjIrm2y4TKvjnzZvI": {
+          "ApiLambdaVersionQHeWeeHLslYCVIezlRmmKiaNqqhqikYNi1mWhJtmYY": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ApiLambdaFunction"
               },
-              "CodeSha256": "CWaSFfHWvNLhbVg/CFoS3R+VQjw0AmEoqesZSSXyef0="
+              "CodeSha256": "9kYzjSOf/4QTU8OE9BU3OXJinothA49a+7B8OyTFGzI="
             }
           },
           "ApiGatewayRestApi": {
@@ -922,7 +922,7 @@
               "ApiLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1752520781216": {
+          "ApiGatewayDeployment1752522018974": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -1082,7 +1082,7 @@
           "ApiLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ApiLambdaVersionM0sFRuTP62hQq9j8p0ju5Mw9eHjIrm2y4TKvjnzZvI"
+              "Ref": "ApiLambdaVersionQHeWeeHLslYCVIezlRmmKiaNqqhqikYNi1mWhJtmYY"
             },
             "Export": {
               "Name": "sls-pruebaamaris-dev-ApiLambdaFunctionQualifiedArn"
@@ -1186,7 +1186,7 @@
     "serviceProviderAwsCfStackName": "pruebaamaris-dev",
     "serviceProviderAwsCfStackId": "arn:aws:cloudformation:us-east-1:293210010085:stack/pruebaamaris-dev/7dd032c0-60bc-11f0-9e0a-0e2583be70af",
     "serviceProviderAwsCfStackCreated": "2025-07-14T14:11:53.067Z",
-    "serviceProviderAwsCfStackUpdated": "2025-07-14T19:16:52.992Z",
+    "serviceProviderAwsCfStackUpdated": "2025-07-14T19:34:20.281Z",
     "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
     "serviceProviderAwsCfStackOutputs": [
       {
@@ -1196,7 +1196,7 @@
       },
       {
         "OutputKey": "ApiLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:293210010085:function:pruebaamaris-dev-api:25",
+        "OutputValue": "arn:aws:lambda:us-east-1:293210010085:function:pruebaamaris-dev-api:27",
         "Description": "Current Lambda function version",
         "ExportName": "sls-pruebaamaris-dev-ApiLambdaFunctionQualifiedArn"
       },
@@ -1330,7 +1330,7 @@
           "Properties": {
             "Code": {
               "S3Bucket": "serverless-framework-deployments-us-east-1-ce2f9573-aed3",
-              "S3Key": "serverless/pruebaamaris/dev/1752520787266-2025-07-14T19:19:47.266Z/pruebaamaris-lambda.jar"
+              "S3Key": "serverless/pruebaamaris/dev/1752522025408-2025-07-14T19:40:25.408Z/pruebaamaris-lambda.jar"
             },
             "Handler": "com.msvanegasg.pruebaamaris.StreamLambdaHandler",
             "Runtime": "java17",
@@ -1354,14 +1354,14 @@
             "ApiLogGroup"
           ]
         },
-        "ApiLambdaVersionM0sFRuTP62hQq9j8p0ju5Mw9eHjIrm2y4TKvjnzZvI": {
+        "ApiLambdaVersionQHeWeeHLslYCVIezlRmmKiaNqqhqikYNi1mWhJtmYY": {
           "Type": "AWS::Lambda::Version",
           "DeletionPolicy": "Retain",
           "Properties": {
             "FunctionName": {
               "Ref": "ApiLambdaFunction"
             },
-            "CodeSha256": "CWaSFfHWvNLhbVg/CFoS3R+VQjw0AmEoqesZSSXyef0="
+            "CodeSha256": "9kYzjSOf/4QTU8OE9BU3OXJinothA49a+7B8OyTFGzI="
           }
         },
         "ApiGatewayRestApi": {
@@ -1437,7 +1437,7 @@
             "ApiLambdaPermissionApiGateway"
           ]
         },
-        "ApiGatewayDeployment1752520781216": {
+        "ApiGatewayDeployment1752522018974": {
           "Type": "AWS::ApiGateway::Deployment",
           "Properties": {
             "RestApiId": {
@@ -1597,7 +1597,7 @@
         "ApiLambdaFunctionQualifiedArn": {
           "Description": "Current Lambda function version",
           "Value": {
-            "Ref": "ApiLambdaVersionM0sFRuTP62hQq9j8p0ju5Mw9eHjIrm2y4TKvjnzZvI"
+            "Ref": "ApiLambdaVersionQHeWeeHLslYCVIezlRmmKiaNqqhqikYNi1mWhJtmYY"
           },
           "Export": {
             "Name": "sls-pruebaamaris-dev-ApiLambdaFunctionQualifiedArn"

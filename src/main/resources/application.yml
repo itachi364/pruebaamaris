@@ -22,11 +22,12 @@ spring:
 
 springdoc:
   api-docs:
-    path: /dev/v3/api-docs
+    path: /v3/api-docs
   swagger-ui:
-    path: /dev/swagger-ui.html
-    config-url: /dev/v3/api-docs/swagger-config
-    use-root-path: true
+    path: /swagger-ui.html
+    config-url: /v3/api-docs/swagger-config
+    url: /v3/api-docs
+
 
 logging:
   level:
