@@ -1,4 +1,9 @@
 <<<<<<< HEAD
+node_modules/
+.serverless/
+package.json
+package-lock.json
+dependency-reduced-pom.xml
 HELP.md
 target/
 .mvn/wrapper/maven-wrapper.jar

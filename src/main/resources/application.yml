@@ -4,12 +4,12 @@ server:
 aws:
   dynamodb:
     region: ${AWS_REGION}
-    access-key: ${AWS_ACCESS_KEY_ID}     
-    secret-key: ${AWS_SECRET_ACCESS_KEY}  
     endpoint: https://dynamodb.${AWS_REGION}.amazonaws.com
 
-
 spring:
+  web:
+    resources:
+      static-locations: classpath:/META-INF/resources/,classpath:/static/
   application:
     name: fondo-service
 
@@ -20,8 +20,16 @@ spring:
     restart:
       enabled: false
 
+springdoc:
+  api-docs:
+    path: /dev/v3/api-docs
+  swagger-ui:
+    path: /dev/swagger-ui.html
+    config-url: /dev/v3/api-docs/swagger-config
+    use-root-path: true
+
 logging:
   level:
     root: INFO
-    software.amazon.awssdk: DEBUG
+    software.amazon.awssdk: WARN
     org.springframework.web: INFO
