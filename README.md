@@ -87,7 +87,7 @@ https://a2hfg1f856.execute-api.us-east-1.amazonaws.com/dev/swagger-ui.html
 ## ✅ Notas
 
 - La base de datos DynamoDB puede ser creada o reutilizada según el parámetro `createTables`.
-- Swagger utiliza `springdoc-openapi` para autogenerar la documentación.
+- Swagger utiliza `springdoc-openapi` para autogenerar la documentación. (Swagger solo funciona en entorno local)
 - El backend está diseñado para ejecutarse sobre Lambda con API Gateway de tipo HTTP.
 
 ---
