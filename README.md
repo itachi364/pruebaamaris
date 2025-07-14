@@ -33,18 +33,6 @@ Debes contar con un usuario de AWS con permisos para:
 - CloudFormation
 - IAM
 
----
-
-## 📦 Clonar el Repositorio
-
-Puedes clonar manualmente:
-
-```bash
-git clone https://github.com/itachi364/pruebaamaris
-cd pruebaamaris
-```
-
-O ejecutar el script automatizado (ver sección siguiente).
 
 ---
 
