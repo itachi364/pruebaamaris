@@ -7,6 +7,8 @@ import com.msvanegasg.pruebaamaris.exception.BadRequestException;
 import com.msvanegasg.pruebaamaris.mapper.UserBalanceMapper;
 import com.msvanegasg.pruebaamaris.models.UserBalance;
 import com.msvanegasg.pruebaamaris.repository.UserBalanceRepository;
+import com.msvanegasg.pruebaamaris.repository.FundRepository;
+import com.msvanegasg.pruebaamaris.models.Fund;
 
 import org.springframework.stereotype.Service;
 
@@ -17,12 +19,13 @@ import java.util.stream.Collectors;
 public class UserBalanceService {
 
     private static final int MONTO_INICIAL = 500_000;
-    private static final int MONTO_MINIMO_VINCULACION = 100_000;
 
     private final UserBalanceRepository repository;
+    private final FundRepository fundRepository;
 
-    public UserBalanceService(UserBalanceRepository repository) {
+    public UserBalanceService(UserBalanceRepository repository, FundRepository fundRepository) {
         this.repository = repository;
+        this.fundRepository = fundRepository;
     }
 
     public UserBalanceResponseDTO suscribirAFondo(UserBalanceRequestDTO dto) {
@@ -30,14 +33,18 @@ public class UserBalanceService {
             throw new BadRequestException("Tipo de transacción inválido para Apertura.");
         }
 
+        Fund fund = fundRepository.findById(dto.getFundId())
+            .orElseThrow(() -> new BadRequestException("Fondo no encontrado con ID: " + dto.getFundId()));
+
+        int montoMinimo = fund.getMinimumAmount();
         int balanceActual = calcularBalanceActual(dto.getUserId());
 
-        if (dto.getAmount() < MONTO_MINIMO_VINCULACION) {
-            throw new BadRequestException("El monto mínimo para vincularse es de COP $100.000.");
+        if (dto.getAmount() < montoMinimo) {
+            throw new BadRequestException("El monto mínimo para vincularse al fondo " + fund.getName() + " es de COP $" + montoMinimo);
         }
 
         if (balanceActual < dto.getAmount()) {
-            throw new BadRequestException("No tiene saldo disponible para vincularse al fondo " + dto.getFundId());
+            throw new BadRequestException("No tiene saldo disponible para vincularse al fondo " + fund.getName());
         }
 
         UserBalance nuevaTransaccion = UserBalanceMapper.toModel(dto, balanceActual - dto.getAmount());
@@ -48,6 +55,9 @@ public class UserBalanceService {
         if (dto.getType() != TransactionType.CANCELACION) {
             throw new BadRequestException("Tipo de transacción inválido para cancelación.");
         }
+
+        Fund fund = fundRepository.findById(dto.getFundId())
+            .orElseThrow(() -> new BadRequestException("Fondo no encontrado con ID: " + dto.getFundId()));
 
         int balanceActual = calcularBalanceActual(dto.getUserId());
 
@@ -71,3 +81,4 @@ public class UserBalanceService {
                 .orElse(MONTO_INICIAL);
     }
 }
+
