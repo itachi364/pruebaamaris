@@ -68,22 +68,6 @@ chmod +x deploy.sh
 
 ---
 
-## 📄 Acceso a Swagger UI
-
-Una vez desplegado correctamente, accede a la documentación Swagger en la URL:
-
-```
-https://<API_ID>.execute-api.<REGION>.amazonaws.com/dev/swagger-ui.html
-```
-
-Ejemplo:
-
-```
-https://a2hfg1f856.execute-api.us-east-1.amazonaws.com/dev/swagger-ui.html
-```
-
----
-
 ## ✅ Notas
 
 - La base de datos DynamoDB puede ser creada o reutilizada según el parámetro `createTables`.
